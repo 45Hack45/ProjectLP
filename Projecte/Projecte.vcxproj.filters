@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="MatriuDispersa.cpp">
+    <ClCompile Include="MatriuSparse.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MatriuDispersa.h">
+    <ClInclude Include="MatriuSparse.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
