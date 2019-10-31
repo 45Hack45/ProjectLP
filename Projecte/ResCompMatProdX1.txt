@@ -22,5 +22,4 @@ Error num 21 a linia 21
 Error num 22 a linia 22
 Error num 23 a linia 23
 Error num 24 a linia 24
-Error num 25 a linia 25
 Fitxer MatProdX1.txt es mes curt que MatProdX1Esperat.txt

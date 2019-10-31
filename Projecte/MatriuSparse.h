@@ -1,5 +1,5 @@
 #pragma once
-#include <forward_list>
+#include <list>
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -42,9 +42,9 @@ public:
 	friend ostream& operator<<(ostream& o, MatriuSparse& mD);
 
 private:
-	forward_list<int> m_fila;
-	forward_list<int> m_columna;
-	forward_list<float> m_valor;
+	list<int> m_fila;
+	list<int> m_columna;
+	list<float> m_valor;
 
 	int m_nFiles;
 	int m_nColumnes;
@@ -66,6 +66,6 @@ private:
 
 	bool cercaPosicio(int fila, int columna);
 	bool cercaPosicio(int fila, int columna, float& valor);
-	bool cercaPosicio(int fila, int columna, forward_list<int>::iterator& it_fila, forward_list<int>::iterator& it_columna);
-	bool cercaPosicio(int fila, int columna, forward_list<float>::iterator& it_valor);
+	bool cercaPosicio(int fila, int columna, list<int>::iterator& it_fila, list<int>::iterator& it_columna);
+	bool cercaPosicio(int fila, int columna, list<float>::iterator& it_valor);
 };

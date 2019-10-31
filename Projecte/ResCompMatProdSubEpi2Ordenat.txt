@@ -30,5 +30,4 @@ Error num 29 a linia 29
 Error num 30 a linia 30
 Error num 31 a linia 31
 Error num 32 a linia 32
-Error num 33 a linia 33
 Fitxer MatProdSubEpi2Ordenat.txt es mes curt que MatProdSubEpi2OrdenatEsperat.txt
