@@ -53,7 +53,7 @@ bool MatriuSparse::cercaPosicio(int fila, int columna, float& valor) {
 		if (*it_fila == fila && *it_columna == columna) {
 			trobat = true;
 			valor = *it_valor;
-			cout << valor << endl;
+			//cout << valor << endl;
 		}else {
 			it_fila++;
 			it_columna++;
@@ -103,7 +103,7 @@ bool MatriuSparse::getVal(int fila, int col, float& valor) {
 			throw "Fora de rang";
 		}else {
 			if (!cercaPosicio(fila, col, valor)) {
-				cout << "no trobat" << endl;
+				//cout << "no trobat" << endl;
 				valor = 0;
 			}
 		}
@@ -111,7 +111,7 @@ bool MatriuSparse::getVal(int fila, int col, float& valor) {
 		cout << e << endl;
 		return false;
 	}
-	cout << "trobat" << endl;
+	//cout << "trobat" << endl;
 	return true;
 }
 

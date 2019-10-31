@@ -65,8 +65,7 @@ bool IgualFitxers(string nomF1, string nomF2, string nomFRes)
 	f2.open(nomF2);
 	bool iguals = true;
 
-	if (f1.is_open() && f2.is_open())
-	{
+	if (f1.is_open() && f2.is_open()){
 		ofstream fitxCompara(nomFRes, ios::out);
 		int cont = 0, linia = 0;
 		while (!f1.eof() && !f2.eof())
