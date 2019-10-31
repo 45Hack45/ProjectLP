@@ -13,7 +13,7 @@ MatriuSparse::MatriuSparse(string fitxer) {
 	file.open(fitxer);
 	if (file.is_open()) {
 		int fila = 0, columna = 0;
-		while (!file.eof()) {
+		while (!file.eof() && !file.bad()) {
 			file >> fila;
 			file >> columna;
 			if (fila > m_nFiles) {
@@ -22,7 +22,7 @@ MatriuSparse::MatriuSparse(string fitxer) {
 			if (columna > m_nColumnes) {
 				m_nColumnes = columna;
 			}
-			pushVal(fila, columna, 0);
+			pushVal(fila, columna, 1);
 		}
 	}else {
 		cout << "Error obrin arxiu" << endl;
