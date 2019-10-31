@@ -42,15 +42,17 @@ public:
 	friend ostream& operator<<(ostream& o, MatriuSparse& mD);
 
 private:
-	list<int> m_fila;
-	list<int> m_columna;
-	list<float> m_valor;
+	vector<int> m_fila;
+	vector<int> m_columna;
+	vector<float> m_valor;
 
 	int m_nFiles;
 	int m_nColumnes;
 
 	//Afageix un valor a la matriu
 	void pushVal(int fila, int columna, float valor);
+
+	void insertVal(int fila, int columna, float valor);
 
 	//Crida clear en totes les llistes
 	void buidarLlistes() {
@@ -66,6 +68,6 @@ private:
 
 	bool cercaPosicio(int fila, int columna);
 	bool cercaPosicio(int fila, int columna, float& valor);
-	bool cercaPosicio(int fila, int columna, list<int>::iterator& it_fila, list<int>::iterator& it_columna);
-	bool cercaPosicio(int fila, int columna, list<float>::iterator& it_valor);
+	bool cercaPosicio(int fila, int columna, vector<int>::iterator& it_fila, vector<int>::iterator& it_columna);
+	bool cercaPosicio(int fila, int columna, vector<float>::iterator& it_valor);
 };

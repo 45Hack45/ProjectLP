@@ -32,8 +32,8 @@ MatriuSparse::MatriuSparse(string fitxer) {
 
 bool MatriuSparse::cercaPosicio(int fila, int columna) {
 	bool trobat = false;
-	list<int>::iterator it_fila = m_fila.begin();
-	list<int>::iterator it_columna = m_columna.begin();
+	vector<int>::iterator it_fila = m_fila.begin();
+	vector<int>::iterator it_columna = m_columna.begin();
 	while (it_fila != m_fila.end() && !trobat) {
 		if (*it_fila == fila && *it_columna == columna) {
 			trobat = true;
@@ -46,9 +46,9 @@ bool MatriuSparse::cercaPosicio(int fila, int columna) {
 }
 bool MatriuSparse::cercaPosicio(int fila, int columna, float& valor) {
 	bool trobat = false;
-	list<int>::iterator it_fila = m_fila.begin();
-	list<int>::iterator it_columna = m_columna.begin();
-	list<int>::iterator it_valor = m_columna.begin();
+	vector<int>::iterator it_fila = m_fila.begin();
+	vector<int>::iterator it_columna = m_columna.begin();
+	vector<int>::iterator it_valor = m_columna.begin();
 	while (it_fila != m_fila.end() && !trobat) {
 		if (*it_fila == fila && *it_columna == columna) {
 			trobat = true;
@@ -63,7 +63,7 @@ bool MatriuSparse::cercaPosicio(int fila, int columna, float& valor) {
 	return trobat;
 }
 
-bool MatriuSparse::cercaPosicio(int fila, int columna, list<int>::iterator& it_fila, list<int>::iterator& it_columna) {
+bool MatriuSparse::cercaPosicio(int fila, int columna, vector<int>::iterator& it_fila, vector<int>::iterator& it_columna) {
 	bool trobat = false;
 	it_fila = m_fila.begin();
 	it_columna = m_columna.begin();
@@ -78,10 +78,10 @@ bool MatriuSparse::cercaPosicio(int fila, int columna, list<int>::iterator& it_f
 	return trobat;
 }
 
-bool MatriuSparse::cercaPosicio(int fila, int columna, list<float>::iterator& it_valor) {
+bool MatriuSparse::cercaPosicio(int fila, int columna, vector<float>::iterator& it_valor) {
 	bool trobat = false;
-	list<int>::iterator it_fila = m_fila.begin();
-	list<int>::iterator it_columna = m_columna.begin();
+	vector<int>::iterator it_fila = m_fila.begin();
+	vector<int>::iterator it_columna = m_columna.begin();
 	it_valor = m_valor.begin();
 	while (it_fila != m_fila.end() && !trobat) {
 		if (*it_fila == fila && *it_columna == columna) {
@@ -123,22 +123,27 @@ void MatriuSparse::setVal(int fila, int columna, float valor) {
 		if (columna > m_nColumnes) {
 			m_nColumnes = columna;
 		}
-		list<float>::iterator it_valor;
+		vector<float>::iterator it_valor;
 		if (!cercaPosicio(fila, columna, it_valor)) {
 			pushVal(fila, columna, valor);
 		}else {
 			*(it_valor) = valor;
 		}
-	}else {
-		return;
 	}
 }
 
 void MatriuSparse::pushVal(int fila, int columna, float valor) {
-	m_fila.push_front(fila);
-	m_columna.push_front(columna);
-	m_valor.push_front(valor);
+	m_fila.push_back(fila);
+	m_columna.push_back(columna);
+	m_valor.push_back(valor);
 }
+
+void MatriuSparse::insertVal(int fila, int columna, float valor) {
+	if (valor != 0) {
+
+	}
+}
+
 
 MatriuSparse& MatriuSparse::operator=(MatriuSparse& matriu) {
 	if (!buida()) {
@@ -153,13 +158,13 @@ MatriuSparse& MatriuSparse::operator=(MatriuSparse& matriu) {
 void MatriuSparse::copiarLlistes(MatriuSparse& m) {
 	buidarLlistes();
 
-	list<int>::iterator it_fila = m.m_fila.begin();
-	list<int>::iterator it_columna = m.m_columna.begin();
-	list<float>::iterator it_valor = m.m_valor.begin();
+	vector<int>::iterator it_fila = m.m_fila.begin();
+	vector<int>::iterator it_columna = m.m_columna.begin();
+	vector<float>::iterator it_valor = m.m_valor.begin();
 	while (it_fila != m.m_fila.end()) {
-		m_fila.push_front(*it_fila);
-		m_columna.push_front(*it_columna);
-		m_valor.push_front(*it_valor);
+		m_fila.push_back(*it_fila);
+		m_columna.push_back(*it_columna);
+		m_valor.push_back(*it_valor);
 
 		it_fila++;
 		it_columna++;
@@ -172,9 +177,9 @@ MatriuSparse& MatriuSparse::operator*(float n) {
 		if (n == 0) { throw "Multiplicant per zero"; }
 
 		MatriuSparse* M = new MatriuSparse();
-		list<int>::iterator it_fila = m_fila.begin();
-		list<int>::iterator it_columna = m_columna.begin();
-		list<float>::iterator it_valor = m_valor.begin();
+		vector<int>::iterator it_fila = m_fila.begin();
+		vector<int>::iterator it_columna = m_columna.begin();
+		vector<float>::iterator it_valor = m_valor.begin();
 
 		while (it_fila != m_fila.end()) {
 			M->pushVal(*it_fila, *it_columna, (*it_valor) * n);
@@ -207,9 +212,9 @@ MatriuSparse& MatriuSparse::operator/(float n) {
 		}
 
 		MatriuSparse* M = new MatriuSparse();
-		list<int>::iterator it_fila = m_fila.begin();
-		list<int>::iterator it_columna = m_columna.begin();
-		list<float>::iterator it_valor = m_valor.begin();
+		vector<int>::iterator it_fila = m_fila.begin();
+		vector<int>::iterator it_columna = m_columna.begin();
+		vector<float>::iterator it_valor = m_valor.begin();
 
 		while (it_fila != m_fila.end()) {
 			M->pushVal(*it_fila, *it_columna, (*it_valor) / n);
@@ -226,9 +231,9 @@ MatriuSparse& MatriuSparse::operator/(float n) {
 
 ostream& operator<<(ostream& o, MatriuSparse& mD) {
 
-	list<int>::iterator it_fila = mD.m_fila.begin();
-	list<int>::iterator it_columna = mD.m_columna.begin();
-	list<float>::iterator it_valor = mD.m_valor.begin();
+	vector<int>::iterator it_fila = mD.m_fila.begin();
+	vector<int>::iterator it_columna = mD.m_columna.begin();
+	vector<float>::iterator it_valor = mD.m_valor.begin();
 
 	cout << "MATRIU DE (FILES: " << mD.m_nFiles << " COLUMNES: " << mD.m_nColumnes << " )" << endl;
 	cout << "VALORS(FILA::COL::VALOR)" << endl;
