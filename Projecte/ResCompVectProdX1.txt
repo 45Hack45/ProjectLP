@@ -1,2 +1,0 @@
-Error num 1 a linia 1
-Fitxer VectProdX1.txt es mes curt que VectProdX1Esperat.txt

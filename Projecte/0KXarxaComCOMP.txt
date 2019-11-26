@@ -1,0 +1,2 @@
+Error num 1 a linia 13
+Fitxer 0KXarxaComOK.txt es mes curt que 0KXarxaCom.txt

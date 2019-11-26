@@ -1,2 +1,1 @@
-Error num 1 a linia 1
-Fitxer VectProdEpiOrdenat.txt es mes curt que VectProdEpiOrdenatEsperat.txt
+Error num 1 a linia 9

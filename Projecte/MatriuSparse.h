@@ -1,8 +1,10 @@
 #pragma once
-#include <list>
-#include <vector>
 #include <iostream>
+#include <vector>
+#include <string>
 #include <fstream>
+#include <map>
+#include "Tree.hpp"
 
 using namespace std;
 
@@ -15,6 +17,20 @@ public:
 
 	~MatriuSparse(){}
 
+	void clear() {
+		m_fila.clear();
+		m_columna.clear();
+		m_valor.clear();
+
+		m_nFiles = 0;
+		m_nColumnes = 0;
+	}
+
+	//TODO:
+	void calculaGrau(vector<int>& k);
+	//TODO:
+	void calculaDendograms(vector<Tree<double>*> Dendrograms);
+
 	void init(int files, int columnes) {
 		if (!buida()){
 			buidarLlistes();
@@ -23,8 +39,10 @@ public:
 		m_nColumnes = columnes;
 	}
 
-	int getNFiles()const { return m_nFiles; }
-	int getNColumnes()const { return m_nColumnes; }
+	int getNFiles()const { return m_nFiles+1; }
+	int getNColumnes()const { return m_nColumnes+1; }
+
+	int getNValues() { return m_valor.size(); }
 
 	bool getVal(int fila, int col, float& valor);
 	void setVal(int fila, int col, float valor);
@@ -35,22 +53,23 @@ public:
 
 	MatriuSparse& operator=(MatriuSparse& matriu);
 	MatriuSparse& operator*(float n);
-	//TOOD: operator*(vector)
-	vector<float> operator*(vector<float> v);
+	vector<float>& operator*(vector<float>& v);
 	MatriuSparse& operator/(float n);
-	//TODO: operator<<()
-	friend ostream& operator<<(ostream& o, MatriuSparse& mD);
+	friend ostream& operator<<(ostream& o, const MatriuSparse& mD);
 
 private:
 	vector<int> m_fila;
 	vector<int> m_columna;
 	vector<float> m_valor;
 
+	//TODO: ajuntar els tres vectors dins d'aquest
+	//vector<pair<pair<int, int>, float>> mat;
+
 	int m_nFiles;
 	int m_nColumnes;
 
 	//Afageix un valor a la matriu
-	void pushVal(int fila, int columna, float valor);
+	void pushBack(int fila, int columna, float valor);
 
 	void insertVal(int fila, int columna, float valor);
 
@@ -70,4 +89,6 @@ private:
 	bool cercaPosicio(int fila, int columna, float& valor);
 	bool cercaPosicio(int fila, int columna, vector<int>::iterator& it_fila, vector<int>::iterator& it_columna);
 	bool cercaPosicio(int fila, int columna, vector<float>::iterator& it_valor);
+
+	int I(int fila, int columna) { return (fila * m_nColumnes) + columna; }
 };
